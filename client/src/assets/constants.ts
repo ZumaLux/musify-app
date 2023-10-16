@@ -11,3 +11,8 @@ export const links = [
   { name: "Top Artists", to: "/top-artists", icon: HiOutlineUserGroup },
   { name: "Top Charts", to: "/top-charts", icon: HiOutlineHashtag },
 ];
+
+// Endpoints auth
+export const login_uri = "http://localhost:5000/login";
+export const token_uri = "http://localhost:5000/token";
+// Endpoints

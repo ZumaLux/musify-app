@@ -3,21 +3,19 @@ import { Sidebar } from "./components/Sidebar";
 import { Route, Routes } from "react-router-dom";
 import { AroundYou, Discover, TopArtists, TopCharts } from "./pages";
 import { Login } from "./components/Login";
-import { useAuth } from "./hooks/useAuth";
 
 // returns the URL part that coresponds to 'code'
 const code = new URLSearchParams(window.location.search).get("code");
+const state = new URLSearchParams(window.location.search).get("state");
 
 function App() {
-  const accessToken = useAuth(code || "");
-
   return (
     <>
       {code ? (
         <div className="relative flex h-[100vh]">
           <Sidebar />
           <div className="flex-1 flex flex-col bg-gradient-to-br from-black to-[#121286]">
-            SearchBar {accessToken}
+            SearchBar
             {/* <div className="px-6 h-[calc(100vh-72px)] overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col-reverse"> */}
             <div className="px-6 h-[calc(100vh-62px)] overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col-reverse">
               {/* Main Content */}
@@ -40,7 +38,7 @@ function App() {
 
           {/* Music Player */}
           <div className="absolute h-28 bottom-0 left-0 right-0 flex animate-slideup bg-gradient-to-br from-white/10 to-[#2a2a80] backdrop-blur-lg rounded-t-3xl z-10">
-            Music Player {code}
+            Music Player {"CODE: " + code + " STATE: " + state}
           </div>
         </div>
       ) : (
