@@ -3,15 +3,21 @@ import { Sidebar } from "./components/Sidebar";
 import { Route, Routes } from "react-router-dom";
 import { AroundYou, Discover, TopArtists, TopCharts } from "./pages";
 import { Login } from "./components/Login";
+import { useEffect, useState } from "react";
 
 // returns the URL part that coresponds to 'code'
-const code = new URLSearchParams(window.location.search).get("code");
-const state = new URLSearchParams(window.location.search).get("state");
+// const code = new URLSearchParams(window.location.search).get("code");
+// const state = new URLSearchParams(window.location.search).get("state");
 
 function App() {
+  const [codeVerifier, setCodeVerifier] = useState("");
+
+  useEffect(() => {
+    setCodeVerifier(localStorage.getItem("code_verifier") || "");
+  }, []);
   return (
     <>
-      {code ? (
+      {codeVerifier ? (
         <div className="relative flex h-[100vh]">
           <Sidebar />
           <div className="flex-1 flex flex-col bg-gradient-to-br from-black to-[#121286]">
@@ -38,7 +44,7 @@ function App() {
 
           {/* Music Player */}
           <div className="absolute h-28 bottom-0 left-0 right-0 flex animate-slideup bg-gradient-to-br from-white/10 to-[#2a2a80] backdrop-blur-lg rounded-t-3xl z-10">
-            Music Player {"CODE: " + code + " STATE: " + state}
+            Music Player {"CODE: " + codeVerifier + " STATE: "}
           </div>
         </div>
       ) : (

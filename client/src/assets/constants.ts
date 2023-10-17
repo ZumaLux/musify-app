@@ -12,7 +12,11 @@ export const links = [
   { name: "Top Charts", to: "/top-charts", icon: HiOutlineHashtag },
 ];
 
-// Endpoints auth
+export const client_id = "1bc7e0846dd842839ade050b7413af64";
+// URLs
+export const base_uri = "http://localhost:3030"; // redirect home
+export const spotify_base_url = "https://accounts.spotify.com";
 export const login_uri = "http://localhost:5000/login";
-export const token_uri = "http://localhost:5000/token";
+// export const token_uri = "http://localhost:5000/token";
 // Endpoints
+export const spotify_auth_url = spotify_base_url + "/authorize";
