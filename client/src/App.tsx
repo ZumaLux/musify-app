@@ -4,20 +4,46 @@ import { Route, Routes } from "react-router-dom";
 import { AroundYou, Discover, TopArtists, TopCharts } from "./pages";
 import { Login } from "./components/Login";
 import { useEffect, useState } from "react";
+import { base_uri, refresh_token_uri } from "./assets/constants";
+import Cookies from "js-cookie";
 
 // returns the URL part that coresponds to 'code'
 // const code = new URLSearchParams(window.location.search).get("code");
 // const state = new URLSearchParams(window.location.search).get("state");
+const minutes = (min: number) => {
+  return 1000 * 60 * min;
+};
 
 function App() {
-  const [codeVerifier, setCodeVerifier] = useState("");
-
+  const [userIsLogged, setUserIsLogged] = useState(Cookies.get("userIsLogged"));
   useEffect(() => {
-    setCodeVerifier(localStorage.getItem("code_verifier") || "");
-  }, []);
+    console.log(userIsLogged);
+    //   setInterval(() => {
+    //     if (localStorage.refresh) {
+    //       console.log("runs: ");
+    //       fetch(refresh_token_uri, {
+    //         method: "POST",
+    //         headers: {
+    //           "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify({
+    //           refresh: localStorage.refresh,
+    //         }),
+    //       })
+    //         .then((response) => {
+    //           return response.json();
+    //         })
+    //         .then((data) => {
+    //           console.log("data: " + data);
+    //           localStorage.access = data.access;
+    //           localStorage.refresh = data.refresh;
+    //         });
+    //     }
+    //   }, 10000);
+  }, [userIsLogged]);
   return (
     <>
-      {codeVerifier ? (
+      {userIsLogged ? (
         <div className="relative flex h-[100vh]">
           <Sidebar />
           <div className="flex-1 flex flex-col bg-gradient-to-br from-black to-[#121286]">
@@ -44,7 +70,7 @@ function App() {
 
           {/* Music Player */}
           <div className="absolute h-28 bottom-0 left-0 right-0 flex animate-slideup bg-gradient-to-br from-white/10 to-[#2a2a80] backdrop-blur-lg rounded-t-3xl z-10">
-            Music Player {"CODE: " + codeVerifier + " STATE: "}
+            Music Player {"CODE: " + "" + " STATE: "}
           </div>
         </div>
       ) : (
