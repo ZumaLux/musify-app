@@ -14,9 +14,10 @@ export const links = [
 
 // URLs
 export const base_uri = "http://localhost:3030"; // redirect home
-export const spotify_base_url = "https://accounts.spotify.com";
-export const login_uri = "http://localhost:5000/login";
-export const refresh_token_uri = "http://localhost:5000/refresh_token";
+export const spotify_base_uri = "https://accounts.spotify.com";
+// export const login_uri = "http://localhost:5000/login";
+export const get_auth_uri = "http://localhost:5000/auth";
+// export const refresh_token_uri = "http://localhost:5000/refresh_token";
 // export const token_uri = "http://localhost:5000/token";
 // Endpoints
-export const spotify_auth_url = spotify_base_url + "/authorize";
+// export const spotify_auth_url = spotify_base_url + "/authorize";

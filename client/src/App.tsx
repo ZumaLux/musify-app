@@ -15,7 +15,7 @@ const minutes = (min: number) => {
 };
 
 function App() {
-  const [userIsLogged, setUserIsLogged] = useState(Cookies.get("userIsLogged"));
+  const [userIsLogged, setUserIsLogged] = useState(Cookies.get("userIsLogged") === "true");
   useEffect(() => {
     console.log(userIsLogged);
     //   setInterval(() => {
@@ -48,6 +48,9 @@ function App() {
           <Sidebar />
           <div className="flex-1 flex flex-col bg-gradient-to-br from-black to-[#121286]">
             SearchBar
+            <a href="http://localhost:5000/logout">Log Out</a>
+            <a href="http://localhost:5000/test">Test</a>
+            <a href="http://localhost:5000/getData">Get Data</a>
             {/* <div className="px-6 h-[calc(100vh-72px)] overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col-reverse"> */}
             <div className="px-6 h-[calc(100vh-62px)] overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col-reverse">
               {/* Main Content */}

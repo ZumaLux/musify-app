@@ -1,7 +1,11 @@
 const testRequest = (req, res) => {
-  const sessionID = req.sessionID;
-  const sessionID_cookie = req.cookies["connect.sid"];
-  res.send(sessionID_cookie);
+  req.session.access_token = "";
+  req.session.save();
+  res.json({ test: req.session.access_token });
+};
+const dataRequest = (req, res) => {
+  console.log("requeest data!");
+  res.json({ test: req?.session?.access_token });
 };
 
-module.exports = { testRequest };
+module.exports = { testRequest, dataRequest };

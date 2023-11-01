@@ -1,6 +1,10 @@
 const express = require("express");
-const { getAuth, getLoginToken } = require("../controller/authController");
-const { testRequest } = require("../controller/testController");
+const {
+  getAuth,
+  getLoginToken,
+  //   getRefreshedToken,
+  logout,
+} = require("../controller/authController");
 const router = express.Router();
 
 // module.exports = router.get("/", function (req, res) {
@@ -15,4 +19,5 @@ const router = express.Router();
 
 module.exports = router.get("/auth", getAuth);
 module.exports = router.get("/login", getLoginToken);
-module.exports = router.get("/test", testRequest);
+// module.exports = router.get("/refresh-token", getRefreshedToken);
+module.exports = router.get("/logout", logout);
