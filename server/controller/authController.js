@@ -62,41 +62,6 @@ const getLoginToken = (req, res) => {
   });
 };
 
-// GET REFRESHED TOKEN
-const getRefreshedToken = (req, res, next) => {
-  console.log("getRefreshedToken");
-  var refresh_token = req.session.refresh_token;
-  console.log("----- SESSION: ----- ", req.session);
-
-  if (!refresh_token) return res.sendStatus(401);
-
-  var authOptions = {
-    url: "https://accounts.spotify.com/api/token",
-    headers: {
-      Authorization: "Basic " + new Buffer.from(client_id + ":" + client_secret).toString("base64"),
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    form: {
-      grant_type: "refresh_token",
-      refresh_token: refresh_token,
-    },
-    json: true,
-  };
-
-  request.post(authOptions, function (error, response, body) {
-    console.log("------ BODY ACCESS TOKEN: -------", body.access_token);
-
-    if (!error && response.statusCode === 200) {
-      const access_token = body.access_token;
-
-      req.session.access_token = access_token;
-      req.session.save();
-      console.log("sync: ", req.session.access_token);
-      next();
-    }
-  });
-};
-
 const logout = (req, res) => {
   req.session.destroy();
   res.clearCookie("userIsLogged");
@@ -105,4 +70,4 @@ const logout = (req, res) => {
   console.log("logout");
 };
 
-module.exports = { getAuth, getLoginToken, getRefreshedToken, logout };
+module.exports = { getAuth, getLoginToken, logout };

@@ -1,10 +1,10 @@
-const { getRefreshedToken } = require("./controller/authController");
+const { getRefreshToken } = require("./getRefreshToken");
 
 const requestValidation = (req, res, next) => {
   if (!req.session.access_token) {
     if (req.session.refresh_token) {
       console.log("refresh token");
-      getRefreshedToken(req, res, next);
+      getRefreshToken(req, res, next);
     } else {
       res.redirect("/logout");
     }
