@@ -1,3 +1,4 @@
+const constants = require("../lib/constants");
 const { getRefreshToken } = require("./getRefreshToken");
 
 const requestValidation = (req, res, next) => {
@@ -6,7 +7,7 @@ const requestValidation = (req, res, next) => {
       console.log("refresh token");
       getRefreshToken(req, res, next);
     } else {
-      res.redirect("/logout");
+      res.redirect(constants.SERVER_LOGOUT_URL);
     }
   } else {
     req.session.touch();

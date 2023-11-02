@@ -1,9 +1,10 @@
 const request = require("request");
+const constants = require("../lib/constants");
 
 // use to request data from the API
 const urlEndpoint = (url_endpoint, access_token) => {
   return {
-    url: `https://api.spotify.com/v1${url_endpoint}`,
+    url: `${constants.SPOTIFY_BASE_URL}${url_endpoint}`,
     headers: { Authorization: "Bearer " + access_token },
     json: true,
   };

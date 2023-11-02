@@ -1,6 +1,7 @@
 const request = require("request");
-const client_id = process.env.CLIENT_ID;
-const client_secret = process.env.CLIENT_SECRET;
+const constants = require("../lib/constants");
+const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_SECRET = process.env.CLIENT_SECRET;
 
 // GET REFRESHED TOKEN
 const getRefreshToken = (req, res, next) => {
@@ -11,9 +12,9 @@ const getRefreshToken = (req, res, next) => {
   if (!refresh_token) return res.sendStatus(401);
 
   var authOptions = {
-    url: "https://accounts.spotify.com/api/token",
+    url: constants.SPOTIFY_TOKEN_BASE_URL,
     headers: {
-      Authorization: "Basic " + new Buffer.from(client_id + ":" + client_secret).toString("base64"),
+      Authorization: "Basic " + new Buffer.from(CLIENT_ID + ":" + CLIENT_SECRET).toString("base64"),
       "Content-Type": "application/x-www-form-urlencoded",
     },
     form: {

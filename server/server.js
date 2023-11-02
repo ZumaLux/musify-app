@@ -6,6 +6,7 @@ const cors = require("cors");
 const sessionParams = require("./config/sessionParams.js");
 const authRoutes = require("./routes/authRoutes.js");
 const dataRoutes = require("./routes/dataRoutes.js");
+const constants = require("./lib/constants.js");
 
 const app = express();
 
@@ -18,7 +19,7 @@ app.use(cors());
 
 // PORT
 app.listen(5000, () => {
-  console.log(`Server is running at http://localhost:5000`);
+  console.log(`Server is running at ${constants.SERVER_BASE_URL}`);
 });
 
 // ROUTES
