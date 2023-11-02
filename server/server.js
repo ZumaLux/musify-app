@@ -5,9 +5,7 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const sessionParams = require("./config/sessionParams.js");
 const authRoutes = require("./routes/authRoutes.js");
-const requestValidation = require("./requestValidation.js");
 const dataRoutes = require("./routes/dataRoutes.js");
-// const connectDB = require("./config/mongoDB.js");
 
 const app = express();
 
@@ -18,15 +16,11 @@ app.use(session(sessionParams));
 app.use(cookieParser());
 app.use(cors());
 
-// PORT & DB_CONNECTION
-// connectDB().then(() => {
+// PORT
 app.listen(5000, () => {
   console.log(`Server is running at http://localhost:5000`);
 });
-// });
 
 // ROUTES
 app.use("/", authRoutes);
 app.use("/", dataRoutes);
-
-// API DATA REQUSTS

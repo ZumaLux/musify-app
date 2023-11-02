@@ -1,6 +1,5 @@
 const querystring = require("querystring");
 const request = require("request");
-const generateRandomString = require("../helpers/randomString");
 
 // ENV
 const client_id = process.env.CLIENT_ID;
@@ -10,7 +9,6 @@ const redirect_uri = "http://localhost:5000/login";
 // CLIENT_AUTH
 const getAuth = (req, res) => {
   console.log("getAuth");
-  const state = generateRandomString(16);
   const scope = `user-modify-playback-state
     user-read-playback-state
     user-read-currently-playing
@@ -34,8 +32,6 @@ const getAuth = (req, res) => {
 // LOGIN_USER (GET ACCESS TOKEN)
 const getLoginToken = (req, res) => {
   const { code, state } = req.query || null;
-  // console.log("code: ", code);
-  // if (state === null) {}
 
   var authOptions = {
     url: "https://accounts.spotify.com/api/token",
@@ -56,7 +52,6 @@ const getLoginToken = (req, res) => {
       const access_token = body?.access_token;
       const refresh_token = body?.refresh_token;
 
-      // console.log(req.cookies["connect.sid"]);
       req.session.access_token = access_token;
       req.session.refresh_token = refresh_token;
       res.cookie("userIsLogged", "true");
@@ -111,11 +106,3 @@ const logout = (req, res) => {
 };
 
 module.exports = { getAuth, getLoginToken, getRefreshedToken, logout };
-
-// use to request data from the API
-// const options = {
-//   url: "https://api.spotify.com/v1/me",
-//   headers: { Authorization: "Bearer " + access_token },
-//   json: true,
-// };
-// request.get(options, function (error, response, body) {});

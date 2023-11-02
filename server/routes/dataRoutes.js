@@ -1,5 +1,5 @@
 const express = require("express");
-const { testRequest, dataRequest } = require("../controller/testController");
+const { testRequest, dataRequest } = require("../controller/dataController");
 const requestValidation = require("../requestValidation");
 const router = express.Router();
 
