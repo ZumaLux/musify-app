@@ -19,5 +19,14 @@ const dataRequest = (req, res) => {
     res.json(body);
   });
 };
+const getRecommended = (req, res) => {
+  console.log("req:", req);
+  request.get(
+    urlEndpoint("/playlists/37i9dQZEVXbMDoHDwVN2tF", req.session.access_token),
+    function (error, response, body) {
+      res.send(body);
+    }
+  );
+};
 
-module.exports = { testRequest, dataRequest };
+module.exports = { testRequest, dataRequest, getRecommended };

@@ -11,11 +11,11 @@ const constants = require("./lib/constants.js");
 const app = express();
 
 // built-in middlewares
+app.use(cors({ credentials: true, origin: constants.CLIENT_BASE_URL })); // allow access from client
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(session(sessionParams));
 app.use(cookieParser());
-app.use(cors());
 
 // PORT
 app.listen(5000, () => {

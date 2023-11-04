@@ -1,5 +1,3 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-export const TopArtists = () => {
-  return <div>TopArtists</div>;
-};
+export const TopArtists = () => {};
